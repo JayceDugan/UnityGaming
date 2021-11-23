@@ -57,13 +57,13 @@ function ResponsiveDrawer(props) {
   const drawerInner = (
     <div>
       <Hidden smDown>
-        <Toolbar sx={{ py: 2 }}>
-          <Link to="/">
-            <img src={LogoLight} alt={''} />
-          </Link>
+        <Toolbar sx={{ py: { md: 2 } }}>
+            <Link to="/">
+              <img src={LogoLight} alt={''} />
+            </Link>
         </Toolbar>
       </Hidden>
-      <Box sx={{ px: 3, py: { xs: 0, sm: 3 } }}>
+      <Box sx={{ px: 3, py: { xs: (40 / 8), sm: 3 } }}>
         <NewFeeds />
         <Divider sx={{ my: 3 }} />
         <FollowingNavList />
@@ -105,7 +105,7 @@ function ResponsiveDrawer(props) {
         variant="permanent"
         sx={{
           display: { xs: 'none', md: 'block' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, boxShadow: 'inset -1px 0px 0px #E4E4E4;' },
         }}
         open
       >

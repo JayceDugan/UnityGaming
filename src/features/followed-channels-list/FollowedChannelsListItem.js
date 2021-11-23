@@ -57,7 +57,8 @@ export default function FollowedChannelsListItem(props) {
           fontWeight: '600!important',
           textDecoration: 'none',
           marginTop: 2,
-          marginBottom: 1
+          marginBottom: 1,
+          minHeight: '48px'
         }}
       >
         { props.name }

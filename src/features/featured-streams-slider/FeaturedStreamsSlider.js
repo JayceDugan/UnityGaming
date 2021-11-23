@@ -9,6 +9,7 @@ import faker from 'faker';
 import WifiIcon from '@mui/icons-material/Wifi';
 import Grid from '@mui/material/Grid'
 import Avatar from '@mui/material/Avatar'
+import DummyBackground from '../../lib/dummy-data/background-image.jpg'
 
 import './FeaturedStreamsSlider.css'
 import Skeleton from '@mui/material/Skeleton';
@@ -19,13 +20,14 @@ export default function FeaturedStreamsSlider() {
   const channels = useSelector(state => state.liveChannels.data.slice(0, 3))
   const loading = useSelector(state => state.liveChannels.loading )
   const channel = (channels[activeChannel]) || {}
-  const Background = (channel && channel.thumbnail_url && channel.thumbnail_url.replace('{width}', '4000').replace('{height}', '600')) || ''
+  // const Background = (channel && channel.thumbnail_url && channel.thumbnail_url.replace('{width}', '4000').replace('{height}', '600')) || ''
+  const Background = DummyBackground
 
   return (
     <Box sx={{
         // backgroundImage: 'url('.concat(activeSlide.video_banner).concat(')'),
         '&::after': {
-          background: `linear-gradient(360deg, rgba(27, 29, 33, 0.769012) 33.51%, rgba(27, 29, 33, 0.0001) 100%), url(${Background}) center/cover no-repeat padding-box fixed`,
+          background: `linear-gradient(360deg, rgba(27, 29, 33, 0.769012) 33.51%, rgba(27, 29, 33, 0.0001) 100%), url(${Background}) top/cover no-repeat padding-box`,
         }
       }}
       className='featured-streams-slider'
@@ -56,12 +58,12 @@ export default function FeaturedStreamsSlider() {
                '-webkit-box-orient': 'vertical',
                marginBottom: 2,
                maxWidth: '100%',
-               width: { xs: '100%', 'md': 513 }
+               width: { xs: '100%', 'md': 525 }
              }}
            >
              { loading
                ? <Skeleton sx={{ bgcolor: 'grey.300' }} />
-               : channel.title
+               : 'Renegades vs Chiefs - ESL ProLeague Season 16 - Playoffs'
              }
            </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 3 }}>

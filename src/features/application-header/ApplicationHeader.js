@@ -40,7 +40,8 @@ export default function ApplicationHeader(props) {
       sx={{
         width: { md: `calc(100% - ${drawerWidth}px)` },
         ml: { md: `${drawerWidth}px` },
-        background: '#FFF'
+        background: '#FFF',
+        boxShadow: 'none'
       }}
       open={props.drawerIsOpen}
     >

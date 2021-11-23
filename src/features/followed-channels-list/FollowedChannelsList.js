@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
 import FollowedChannelsListItem from './FollowedChannelsListItem';
 import Titlebar from '../../components/titlebar/Titlebar'
 
@@ -18,9 +17,16 @@ export default function FollowedChannelsList() {
     <Box className="shadow-el" sx={{ borderRadius: '24px', py: 5, px: 4, background: "#FFF" }} >
       <Titlebar variant="h6" title="From Channels You Follow" />
 
-      <Stack spacing={4} direction="row" justifyContent="space-between">
+      <Box sx={{
+        display: 'grid',
+        gridAutoRows: 'auto',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(80px,1fr))',
+        alignItems: 'start',
+        gridGap: 54
+      }}
+      >
         { stackItems }
-      </Stack>
+      </Box>
     </Box>
   )
 }
