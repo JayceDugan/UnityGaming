@@ -1,0 +1,21 @@
+.featured-streams-slider {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 248px 0 188px;
+    background-repeat: no-repeat;
+}
+
+.featured-streams-slider::after {
+    content: "";
+    position: absolute;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
