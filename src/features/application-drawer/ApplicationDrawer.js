@@ -96,7 +96,7 @@ function ResponsiveDrawer(props) {
         sx={{
           flexShrink: 0,
           display: { xs: 'block' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '100%', top: '96px', boxShadow: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '100%', top: '96px', boxShadow: 'none', paddingBottom: '100px' },
         }}
       >
         {drawerInner}

@@ -4,6 +4,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles'
 import ApplicationHeader from './features/application-header/ApplicationHeader';
 import ApplicationDrawer from './features/application-drawer/ApplicationDrawer';
 import Box from '@mui/material/Box'
+import PropTypes from 'prop-types'
+import { Link as RouterLink } from 'react-router-dom'
 import { useState } from 'react'
 
 // ---------- Views
@@ -20,6 +22,7 @@ import NewsFeedView from './views/NewsFeed';
 // import UploadView from './views/UploadVideos';
 // import UserVideosView from './views/UserVideos';
 // import VideoView from './views/Video';
+import NotFoundView from './views/NotFound';
 
 import { Provider } from 'react-redux'
 import store from './store'
@@ -39,7 +42,30 @@ import store from './store'
 //   { path: '/video/:uuid', view: VideoView },
 // ].map(route => <Route path={route.path} element={route.view} />)
 
+const LinkBehavior = React.forwardRef((props, ref) => {
+  const { href, ...other } = props;
+  // Map href (MUI) -> to (react-router)
+  return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
+});
+
+LinkBehavior.propTypes = {
+  href: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string])
+    .isRequired,
+};
+
 const themeOptions = {
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
+      },
+    },
+  },
   palette: {
     type: 'light',
     primary: {
@@ -119,10 +145,8 @@ function App() {
             sx={{ flexGrow: 1, p: 0, width: { md: `calc(100% - ${drawerWidth}px)` }, marginLeft: { md: 'auto' } }}
           >
             <Routes>
-              <Route path="/">
-                <Route index element={<NewsFeedView />} />
-                {/*{ ApplicationRoutes }*/}
-              </Route>
+              <Route index path="/" element={<NewsFeedView />} />
+              <Route path="*" element={<NotFoundView />} />
             </Routes>
           </Box>
         </div>
