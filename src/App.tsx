@@ -1,12 +1,17 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import ApplicationHeader from './features/application-header/ApplicationHeader';
-import ApplicationDrawer from './features/application-drawer/ApplicationDrawer';
+import { Components } from '@mui/material';
 import Box from '@mui/material/Box'
 import PropTypes from 'prop-types'
-import { Link as RouterLink } from 'react-router-dom'
+import {
+  Link as RouterLink,
+  LinkProps
+} from 'react-router-dom'
 import { useState } from 'react'
+
+import ApplicationHeader from './features/application-header/ApplicationHeader';
+import ApplicationDrawer from './features/application-drawer/ApplicationDrawer';
 
 // ---------- Views
 // import AnalyticsView from './views/Analytics';
@@ -42,16 +47,21 @@ import store from './store'
 //   { path: '/video/:uuid', view: VideoView },
 // ].map(route => <Route path={route.path} element={route.view} />)
 
-const LinkBehavior = React.forwardRef((props, ref) => {
-  const { href, ...other } = props;
-  // Map href (MUI) -> to (react-router)
-  return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
+const LinkBehavior = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
+  const { to, ...other } = props;
+  return <RouterLink data-testid="custom-link" ref={ref} to={to} {...other} />;
 });
 
 LinkBehavior.propTypes = {
-  href: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string])
+  to: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string])
     .isRequired,
 };
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    components: Components
+  }
+}
 
 const themeOptions = {
   components: {
